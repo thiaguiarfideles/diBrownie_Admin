@@ -1,0 +1,33 @@
+
+{% extends 'agendaFinanceiraApp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Lista de Fornecedores Cadastrados</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+				<th>Telefone</th>
+                <th>E-mail</th>
+                <th>Endereço</th>
+                <!-- Adicione mais colunas conforme necessário -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in cadastros %}
+			
+            <tr>
+                <td>{{ usuario.nm_fornecedor }}</td>
+				<td>{{ usuario.telefone }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.endereco }}</td>
+                <!-- Adicione mais colunas conforme necessário -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}
