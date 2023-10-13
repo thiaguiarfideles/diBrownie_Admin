@@ -306,17 +306,28 @@ class OrcamentoGastos(models.Model):
     def __str__(self):
         return f"Orçamento de Gastos - {self.ano} ({self.mes})"
         
-
 # Model for Saldo Inicial
 class SaldoInicial(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default=None)
-    banco = models.CharField(max_length=100, verbose_name="Nome do Banco")
+    banco = models.CharField(max_length=100, verbose_name="Nome do Banco", choices=CHOICES_BANCOS)
     saldo = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Saldo Inicial")
-    data_inicial = models.DateField(verbose_name="Data Inicial do Saldo")
+    data_inicial = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True,verbose_name="Enviado em")
        
 
     def __str__(self):
         return f"{self.usuario} | {self.banco} | {self.data_inicial}"
+
+class SaldoAtual(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, default=None)
+    banco = models.CharField(max_length=100, verbose_name="Nome do Banco", choices=CHOICES_BANCOS)
+    saldo_atual = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Saldo Atual")
+    data_atual = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Enviado em")
+    date_modificacao = models.DateTimeField(auto_now_add=True, verbose_name="Data da Transação")
+
+    def __str__(self):
+        return f"{self.usuario} | {self.banco} | {self.data_atual}"    
     
 
 class LancamentoContasReceber(models.Model):

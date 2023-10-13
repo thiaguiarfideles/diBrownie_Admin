@@ -1,41 +1,39 @@
-
 {% extends 'agendaFinanceiraApp/base.html' %}
 
 {% block content %}
 <div class="container">
-    <h1>Lista de Despesas Cadastradas</h1>
+    <h1>Lista de receitas Lançadas</h1>
     <input type="text" id="searchInput" placeholder="Pesquisar">
     <table class="table">
         <thead>
             <tr>
-                <th>Nome</th>
+                <th>Nome Pagador</th>
                 <th>Valor</th>
-				<th>Data vencimento</th>
+                <th>Data do pagamento</th>
                 <th>Data de Criação</th>
                 <th>Situacao</th>
-                <th>Modo de pagamento</th>
-                <th>Tipo de Despesa</th>
+                <th>Forma de recebimento</th>
+                <th>Tipo de recebimento</th>
                 <!-- Adicione mais colunas conforme necessário -->
             </tr>
         </thead>
         <tbody>
             {% for usuario in cadastros %}
-			
             <tr>
-                <td>{{ usuario.nome_credor }}</td>
+                <td>{{ usuario.nome_pagador }}</td>
                 <td>{{ usuario.valor }}</td>
-				<td>{{ usuario.data_vencimento }}</td>
+                <td>{{ usuario.data_entrada }}</td>
                 <td>{{ usuario.created_at }}</td>
                 <td>{{ usuario.situacao }}</td>
-                <td>{{ usuario.modo_pag }}</td>
-                <td>{{ usuario.tipo_despesa }}</td>
-
+                <td>{{ usuario.forma_recebimento }}</td>
+                <td>{{ usuario.tipo_recebimento }}</td>
                 <!-- Adicione mais colunas conforme necessário -->
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
 <script>
     document.getElementById("searchInput").addEventListener("input", function() {
         var input, filter, table, tr, td, i, txtValue;
@@ -56,6 +54,5 @@
         }
     });
 </script>
-
 
 {% endblock content %}

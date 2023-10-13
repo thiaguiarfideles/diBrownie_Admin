@@ -39,15 +39,22 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{% url 'cadastrar_cliente' %}">Cadastrar Clientes</a></li>
+                                <li><a href="{% url 'cliente_list' %}">Visualizar Clientes</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="{% url 'cadastrar_fornecedor' %}">Cadastrar Fornecedor</a></li>
+                                <li><a href="{% url 'fornecedor_list' %}">Visualizar Fornecedor</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{% url 'cadastrar_despesa' %}">Cadastrar Despesas</a></li>
-                                <li><a href="{% url 'cadastrar_contasapagar' %}">Cadastrar Contas a pagar</a></li>
+                                <li><a href="{% url 'despesa_list' %}">Visualizar Despesas</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{% url 'cadastrar_receita' %}">Cadastrar Receitas</a></li>
+                                <li><a href="{% url 'receita_list' %}">Visualizar Receita</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{% url 'cadastrar_contasapagar' %}">Cadastrar Contas a pagar</a></li>
+                                <li role="separator" class="divider"></li>
                             </ul>
                         </li>
-                        <li><p class="navbar-text navbar-left">Conectado como  {{ user.get_full_name }} | {{ user.get_username }}</p></li>
+                        <li><p class="navbar-text navbar-left">Conectado como  {{ user.get_full_name}} | {{ user.get_username }}</p></li>
                         <li><a href="{% url 'auth_logout' %}">Sair</a></li>
                     </ul>
                 </div>        

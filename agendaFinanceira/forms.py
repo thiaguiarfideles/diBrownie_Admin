@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.urls import reverse
 from django import forms
-from .models import Cliente, Receita, Despesa, LancamentoContasPagar, Fornecedor
+from .models import Cliente, Receita, Despesa, LancamentoContasPagar, Fornecedor, SaldoAtual, SaldoInicial
 from dal import autocomplete
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit
@@ -214,3 +214,53 @@ class LancamentoContasPagarForm(ModelForm):
             'fornecedor': Select2MultipleWidget,
         }
       
+
+class SaldoForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SaldoForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'id-saldo-form'
+        self.helper.form_method = 'post'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.layout = Layout(
+            Div(
+                Div('banco', css_class="col-md-6"),
+                css_class="row"),
+            Div(
+                Div('saldo', css_class="col-md-6"),
+                css_class="row"),
+            Div(
+                Div('data_inicial', css_class="col-md-5"),
+                css_class="row"),
+            Submit('submit', 'Enviar', css_class='btn btn-success col-centered')
+        )
+
+    class Meta:
+        model = SaldoInicial
+        fields = ['banco','saldo','data_inicial']
+        exclude = ['usuario','created_at']
+        
+class SaldoAtlForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(SaldoAtlForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_id = 'id-atual-form'
+        self.helper.form_method = 'post'
+        self.helper.form_class = 'form-horizontal'
+        self.helper.layout = Layout(
+            Div(
+                Div('banco', css_class="col-md-6"),
+                css_class="row"),
+            Div(
+                Div('saldo_atual', css_class="col-md-6"),
+                css_class="row"),
+            Div(
+                Div('data_atual', css_class="col-md-5"),
+                css_class="row"),
+            Submit('submit', 'Enviar', css_class='btn btn-success col-centered')
+        )
+
+    class Meta:
+        model = SaldoAtual
+        fields = ['banco','saldo_atual','data_atual']
+        exclude = ['usuario', 'created_at']        

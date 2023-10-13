@@ -26,11 +26,6 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from core.views import LoginView
 from rest_framework.authtoken.views import obtain_auth_token
-from agendaFinanceira.views import (
-     #ClienteDetailView,
-     ReceitaDetailView
-     #DespesaDetailView,
-)
 
 
 urlpatterns = [
@@ -43,10 +38,6 @@ urlpatterns = [
     path('todolist/',include('todolist.urls')),
     path('agendaFinanceira/',include('agendaFinanceira.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # URL para obter um token de autenticação
-    #url(r'^api/agendaFinanceira/clientes_detalhe/(?P<pk>\d+)/$', ClienteDetailView.as_view()),
-    #url(r'^api/agendaFinanceira/despesas_detalhe/(?P<pk>\d+)/$', DespesaDetailView.as_view()),
-    url(r'^api/agendaFinanceira/receitas_detalhe/(?P<pk>\d+)/$', ReceitaDetailView.as_view()),
-
 
 
     re_path(r'^prestador/', include(('usuarios.urls', 'usuarios'),namespace='usuarios')),
